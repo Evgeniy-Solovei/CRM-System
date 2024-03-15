@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<h2 class="fw-bold">Статистика рекламных компаний</h2>
+<div class="row bg-white px-3 py-3 mx-2 my-5 rounded pb-5 shadow-lg">
+    <div class="col">
+        <ul class="list-group">
+            {% for company_statistic in company_statistics %}
+            <li class="list-group-item list-group-item-light d-flex justify-content-between">
+                <a href="/ads/{{ ad.pk }}" class="text-decoration-none link-dark">{{ company_statistic.name }}</a>
+                <p>Лидов: {{ company_statistic.leads_count }} | Активных клиентов: {{ company_statistic.active_clients_count }} | Соотношение контрактов к затратам: {{ company_statistic.success_ratio|default_if_none:"-" }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
